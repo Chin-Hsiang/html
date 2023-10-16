@@ -1,0 +1,167 @@
+
+<!-- saved from url=(0043)https://da-ni-de-pp-2.shirly201348.repl.co/ -->
+<html lang="zh-TW"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+     <!-- 引入Bootstrap CSS庫 -->
+    <link href="./達你的PP_files/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+     <!-- 頁面標題 -->
+    <title>達你的PP</title>
+
+    <!-- 風格設定 -->
+    <style>
+      /* Navbar品牌樣式 */
+      .navbar {
+            background-image: url('https://img.onl/y51j7w');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-color: transparent;
+            border: none;
+            text-align: center; /* 文字置中 */
+        }
+    /* 自定義導航欄品牌樣式 */
+      .navbar-brand {
+          margin: 0 auto; /* 將品牌文字置中 */
+          display: inline-block;
+      }
+      /* 聊天容器樣式 */
+      #chat-container {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 10vh;
+      }
+    </style>
+  </head>
+
+<!-- 頁面上方設定 -->
+  <body>
+    <header>
+       <!-- 頁面導航欄 -->
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-info">
+        <div class="container-fluid">
+           <!-- 頁面標題連結 -->
+          <a class="navbar-brand" href="https://www.youtube.com/@better_than_yesterday">達你的PP</a>
+          </div>
+        
+      </nav>
+    </header>
+
+
+    <!-- 聊天訊息設定 -->
+    <main class="flex-shrink-0">
+      <div class="container">
+        <br>
+        <br>
+          <!-- 聊天消息項目 -->
+          <div class="list-group-item list-group-item-action d-flex gap-3 py-3">
+      <!-- 用戶頭像 -->     
+      <img src="./達你的PP_files/64b4e08b65b3c.png" alt="twbs" width="60" height="60" class="rounded-circle flex-shrink-0">
+      <div class="d-flex flex-column gap-2 w-100 justify-content-between">
+        <div>
+          <!-- 歡迎消息 -->
+          <p class="mb-0 opacity-75">你好！我是達悟語小兵！有什麼問題都可以問我喔!</p>
+        </div>
+
+        <!-- 聊天輸入設定 -->
+        <div class="d-flex justify-content-between">
+          <!-- 用戶輸入文本框 -->
+          <input type="text" class="form-control flex-grow-1 me-2" id="user-input">
+          <!-- 發送按鈕 -->
+          <button id="send-button" class="btn btn-light"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+              <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"></path>
+            </svg></button>
+        </div>
+      </div>
+    </div>
+      <!-- 用戶和機器人的聊天消息列表 -->
+        <div id="list-group" class="list-group w-auto"></div>
+        <!-- 語音播放器區域 -->
+        <div class="d-flex justify-content-center align-items-center">
+        <audio controls="" id="audio-player" style="display: none;">
+        <source src="" type="audio/mpeg">
+        Your browser does not support the audio element.
+        </audio>
+        </div>
+    </div></main>
+    <!-- 引入必要的JavaScript庫 -->
+    <script src="./達你的PP_files/jquery-3.6.3.min.js.下載" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="./達你的PP_files/bootstrap.bundle.min.js.下載" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <!-- JavaScript代碼用於處理聊天功能 -->
+    <script>
+    // 把更新對話欄的地方變成一個新的方程，然後用兩種方式來呼叫這個方程
+    // 1 - 按發送按鈕
+    // 2 - 鍵盤的回送enter or return
+
+    // 更新對話欄方程：
+      function sendQuestion() {
+        // 把用戶輸入的問題取出來
+        let inputQuestion = $("#user-input").val();
+  
+        // 清除問話框
+        $("#user-input").val("");
+  
+        // 更新對話值的同時也保持保持舊的問答
+        let appendConversation = "";
+        appendConversation += `
+        <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3">
+          <img src="https://img.onl/F80fxs" alt="twbs" width="60" height="60" class="rounded-circle flex-shrink-0">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <p class="mb-0 opacity-75">${inputQuestion}</p>
+            </div>
+          </div>
+        </a>
+        `;
+  
+        // 更新html畫面，把對話加到list-group裡面
+        $("#list-group").append(appendConversation);  
+        // 發送用戶的問題到伺服器並獲取機器人的回答
+        $.ajax({
+          type: "POST",
+          url: "/",
+          data: {'prompt': inputQuestion},
+          success: function (data) {
+            // 構建機器人的回答消息
+            let ai_answers = "";
+            ai_answers += `<a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3">
+              <img src="https://img.onl/tqkoU3" alt="twbs" width="60" height="60" class="rounded-circle flex-shrink-0">
+                <div class="d-flex gap-2 w-100 justify-content-between">
+                  <div>
+                    <p class="mb-0 opacity-75">${data.ai_answer}</p>
+                  </div>
+                </div>
+              </a>
+              `;
+            // 在HTML中添加機器人的回答消息
+            $("#list-group").append(ai_answers)
+           // 更新语音播放器的源文件
+            const audioPlayer = $("#audio-player");
+audioPlayer.find("source").attr("src", `static/ai_answer.mp3?${Date.now()}`);
+            $("#audio-player").show();
+            $("#audio-player")[0].load();
+            $("#audio-player")[0].play();
+          }
+        });
+      }
+
+      // 點擊發送按鈕時去呼叫ajax方程
+      $("#send-button").click(function() {
+        sendQuestion();
+      });
+
+      // 鍵盤按下enter/return的時後呼叫ajax方程
+      $("#user-input").keypress(function(event) {
+        if (event.keyCode === 13) {
+          sendQuestion();
+        }
+      });
+    </script>
+  
+</body></html>

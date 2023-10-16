@@ -1,0 +1,61 @@
+.container-grid{
+    display: grid;
+    grid-template-areas: 
+        'header header header header header'
+        'left middle middle middle right'
+        'footer footer footer footer footer ';
+        grid-column-gap:5px;
+        grid-row-gap:5px;
+} 
+.header{
+    
+     background-image: url("首頁底圖.jpg");
+     background-repeat: no-repeat;
+    background-size: cover;  /* 調整背景圖片的大小 */  
+    padding: 30px;
+    text-align: center;
+    font-size: 30px;
+    grid-area: header;
+}
+
+.footer{
+    background-image: url("首頁底圖.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;  /* 調整背景圖片的大小 */  
+    padding: 20px;
+    text-align: center;
+    font-size: 15px;  
+    grid-area: footer;
+}
+
+.left{
+    background-color: rgb(255, 255, 255);
+    grid-area: left;
+}
+
+.middle{
+    background-color: rgb(146, 142, 164);
+    grid-area: middle;
+    text-align: center;
+}
+
+.right{
+    background-color: rgb(255, 255, 255);
+    grid-area: right;
+}
+
+.left , .middle , .right{
+    height:750px;
+}
+@media (max-width:600px){
+    .container-grid{
+        display: grid;
+        grid-template-areas: 
+            'header'
+            'left'
+            'middle'
+            'right'
+            'footer'
+    } 
+
+}
