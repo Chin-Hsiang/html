@@ -48,17 +48,13 @@
     padding: 10px;
     height: 1050px;
 }
-@media only screen and(max-width:768px){
-    .container-grid{
-        display: grid;
-        grid-template-areas: 
-            'header'
-            'left'
-            'middle'
-            'right'
-            'footer'
-    } 
-}
+@media screen and (max-width:2160px){
+            .header{height: auto; margin-bottom: 10px;}
+            .left{height: auto;}
+            .middle{height: auto;}
+            .right{height: auto; }
+            .footer{height: auto;}
+    }
 /*.col-1{width:8.33%;}
 .col-2{width:16.66%;}
 .col-3{width:25%}
